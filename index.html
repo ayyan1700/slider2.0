@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 50px;
+            color: #333;
+        }
+        .main {
+            width:750px;
+            height: 50vh;
+            display: flex;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border-radius: 50px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgb(0, 0, 0);
+        }
+        img {
+            width: 600px;
+            height: 400px;
+            border-radius: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            font-size: 30px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 10px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        #left {
+            left: 20px;
+        }
+        #right {
+            right: 20px;
+        }
+        button:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Slider</h1>
+    <div class="main">
+        <button id="left"><i class="fas fa-chevron-left"></i></button>
+        <img id="show" src="" alt="Image Slider" />
+        <button id="right"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <script>
+        const img = [
+            "https://images.unsplash.com/photo-1742268351423-6d04402e9090?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1728044849321-4cbffc50cc1d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1728044849242-516700295875?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1742505709683-e9aa7b51a699?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        ];
+        let currentimg = 0;
+        let slideimgAuto;
+        slideimgAuto = img[currentimg];
+        document.getElementById('show').src = slideimgAuto;
+        setInterval(() => {
+            currentimg = (currentimg + 1) % img.length;
+            slideimgAuto = img[currentimg];
+            document.getElementById('show').src = slideimgAuto;
+        }, 3000);
+        document.getElementById('left').addEventListener('click', function() {
+            currentimg = (currentimg - 1 + img.length) % img.length;
+            slideimgAuto = img[currentimg];
+            document.getElementById('show').src = slideimgAuto;
+        });
+        document.getElementById('right').addEventListener('click', function() {
+            currentimg = (currentimg + 1) % img.length;
+            slideimgAuto = img[currentimg];
+            document.getElementById('show').src = slideimgAuto;
+        });
+    </script>
+</body>
+</html>
